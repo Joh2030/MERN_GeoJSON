@@ -1,7 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
-const { createUser } = require("./controllers/user");
+const {
+  createUser,
+  getUsers,
+  getUser,
+  updateUser,
+  deleteUser,
+} = require("../controllers/user");
 
 const userRouter = express.Router();
 

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const model = require("../models/user");
 
 const propertySchema = new mongoose.Schema({
   title: {
@@ -31,18 +32,14 @@ const propertySchema = new mongoose.Schema({
     type: Array,
     required: true,
   },
-  owner: {
-    id: ObjectId,
-    ref: (/models/user.js)
-  },
+  // owner: {
+  //   id: String,
+  //   ref: { model },
+  // },
   availability: {
     type: String,
-    enum: [
-        'vacant',
-        'rented',
-        'sold',
-    ],
-    default: 'vacant'
+    enum: ["vacant", "rented", "sold"],
+    default: "vacant",
   },
   createdAt: {
     type: Date,

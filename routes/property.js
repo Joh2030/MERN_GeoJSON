@@ -7,7 +7,7 @@ const {
   getProperty,
   updateProperty,
   deleteProperty,
-} = require("./controllers/property");
+} = require("../controllers/property");
 
 const propertyRouter = express.Router();
 
