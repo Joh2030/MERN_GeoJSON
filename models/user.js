@@ -17,4 +17,7 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+// i get a reference error!!!!!
+//user.collection.createIndex({ location: "2dsphere" });
+
 module.exports = mongoose.model("User", userSchema);

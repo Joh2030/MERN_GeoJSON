@@ -1,5 +1,20 @@
 const mongoose = require("mongoose");
-const model = require("../models/user");
+// const model = require("../models/user");
+
+const pointSchema = new mongoose.Schema({
+  name: String,
+  location: {
+    type: {
+      type: String,
+      enum: ["Point"],
+      required: true,
+    },
+    coordinates: {
+      type: [Number],
+      required: true,
+    },
+  },
+});
 
 const propertySchema = new mongoose.Schema({
   title: {
@@ -32,10 +47,11 @@ const propertySchema = new mongoose.Schema({
     type: Array,
     required: true,
   },
-  // owner: {
-  //   id: String,
-  //   ref: { model },
-  // },
+  owner: {
+    id: mongoose.Types.ObjectId,
+
+    //ref: "user",  //i keep on getting a type error "user" not defined!!!!
+  },
   availability: {
     type: String,
     enum: ["vacant", "rented", "sold"],
@@ -45,6 +61,8 @@ const propertySchema = new mongoose.Schema({
     type: Date,
     default: true,
   },
+  Location: pointSchema,
 });
 
+pointSchema.index({ location: "2dsphere" });
 module.exports = mongoose.model("Property", propertySchema);
